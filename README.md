@@ -104,9 +104,12 @@ The project includes:
 # Team Members
 
 - Ahmed Abdel Latif
-- ...
-
----
+- Ahmed Hassan 
+- Ahmed Assem
+- Abdulrahamn Braga
+- Ammar Mostafa 
+- Mohamed Shrief 
+- Girgs Tawfic 
 
 # Notes
 

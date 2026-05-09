@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> C5 - Round Robin vs SJF (Preemptive) | CPU Scheduling Simulator</title>
+    <link rel="icon" href="./assets/imgs/icon.jpeg">
+
+    <!--------------------------------------metas------------------------------------------->
+    <!--Allows Arabic, English, symbols and emojis-->
+    <meta charset="UTF-8"> 
+
+    <!--Allows the website to be responsive on different devices, Tells browser to match screen width, Sets initial zoom level-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <!--Appears in Google search results, Helps SEO ranking-->
+    <meta name="description" content="Learn web development with practical examples."> 
+
+    <!--Tells search engines who created the page-->
+    <meta name="author" content="Ahmed Hassan"> 
+
+    <!--Used when sharing on social media like facebook, linkedin, whatsapp, etc-->
+    <meta property="og:title" content="My Website">
+    <meta property="og:description" content="Best site ever">
+    <meta property="og:image" content="image.jpg">
+
+    <!--------------------------------------CSS------------------------------------------->
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <!--------------------------------------page------------------------------------------->
+    <div class="page">
+        
+        <!------------------------------------------ HEADER ----------------------------------------------->
+        <div class="header">
+            <div class="header-top">
+                <h1>RR vs SJF (Preemptive) Simulator</h1>
+                <span class="badge">C5 - OS Project</span>
+            </div>
+            <p>
+                Round Robin &amp; Shortest Job First (Preemptive) - implement, run, compare.
+            </p>
+        </div>
+
+        <!--------------------------------------------- PRESETS ------------------------------------------------------>
+        <div class="label">Load test scenario</div>
+        <div class="preset-row">
+            <button class="btn-preset active" onclick="loadPreset(0,this)">A - basic mixed</button>
+            <button class="btn-preset" onclick="loadPreset(1,this)">B - short-job heavy</button>
+            <button class="btn-preset" onclick="loadPreset(2,this)">C - fairness test</button>
+            <button class="btn-preset" onclick="loadPreset(3,this)">D - long job</button>
+            <button class="btn-preset" onclick="loadPreset(4,this)">E - validation</button>
+        </div>
+
+        <!------------------------------------------- INPUT PANEL -------------------------------------------->
+        <div class="input-panel">
+            <div class="label">Time Quantum (Round Robin only)</div>
+            <div class="quantum-row">
+                <label>Quantum =</label>
+                <input type="number" id="quantum" value="3" min="1" placeholder="e.g. 3">
+                <span class="quantum-hint">positive integer; affects only Round Robin</span>
+            </div>
+
+            <div class="label" style="margin-bottom:.5rem">Process list</div>
+            <div class="ptable-head">
+                <span>PID</span>
+                <span>Arrival Time</span>
+                <span>Burst Time</span>
+                <span></span>
+            </div>
+            <div id="process-rows"></div>
+            <div class="row-actions">
+                <button class="btn-add" onclick="addRow()">+ add process</button>
+            </div>
+
+            <div class="error-box" id="error-box"></div>
+            <button class="btn-run" onclick="runSim()">&#x25B6; Run Simulation</button>
+        </div>
+
+        <!------------------------------------------- RESULTS ------------------------------------------------------>
+        <div class="results" id="results">
+
+            <div class="algo-strip">
+                <div class="algo-chip rr">Round Robin (RR)</div>
+                <div class="algo-chip srtf">SJF (Preemptive)</div>
+            </div>
+
+            <!-- RR GANTT -->
+            <div class="gantt-section">
+                <div class="label">Gantt Chart - Round Robin</div>
+                <div class="gantt-wrap">
+                    <div class="gantt-inner" id="gantt-rr"></div>
+                </div>
+            </div>
+
+            <!-- RR QUEUE -->
+            <div class="queue-section">
+                <div class="label">Ready queue snapshots - Round Robin</div>
+                <div class="queue-chips" id="rr-queue"></div>
+            </div>
+
+            <!-- SRTF GANTT -->
+            <div class="gantt-section">
+                <div class="label">Gantt Chart - SJF Preemptive</div>
+                <div class="gantt-wrap">
+                    <div class="gantt-inner" id="gantt-srtf"></div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!------------------------------------------- METRICS -------------------------------------------->
+            <div class="metrics-grid">
+                <div class="metrics-card">
+                    <div class="metrics-card-header rr">Metrics - Round Robin</div>
+                    <table class="mt" id="table-rr">
+
+                    </table>
+                </div>
+                <div class="metrics-card">
+                    <div class="metrics-card-header srtf">Metrics - SJF (Preemptive)</div>
+                    <table class="mt" id="table-srtf">
+
+                    </table>
+                </div>
+            </div>
+
+            <hr>
+
+            <!------------------------------------------- COMPARISON -------------------------------------------->
+            <div class="label" style="margin-bottom:.75rem">Comparison summary</div>
+            <div class="comparison-card" id="comparison-card"></div>
+
+            <hr>
+
+            <!------------------------------------------- CONCLUSION -------------------------------------------->
+            <div class="label" style="margin-bottom:.75rem">Conclusion</div>
+            <div class="conclusion-card" id="conclusion-card"></div>
+
+            <!------------------------------------------- ANALYSIS QUESTIONS -------------------------------------------->
+            <div class="analysis-section">
+                <div class="label" style="margin-bottom:.75rem">Required analysis answers</div>
+                <div class="analysis-card" id="analysis-card"></div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------------- JS -------------------------------------------->
+    <script src="js/rowManagement.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/roundRobin.js"></script>
+    <script src="js/srtf.js"></script>
+    <script src="js/renderGantt.js"></script>
+    <script src="js/renderMetrics.js"></script>
+    <script src="js/renderComparison.js"></script>
+    <script src="js/renderConclusion.js"></script>
+    <script src="js/renderAnalysis.js"></script>
+    <script src="js/mainRun.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
